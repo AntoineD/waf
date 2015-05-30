@@ -116,10 +116,10 @@ CXXFLAGS = ['-O2', '-g']
 PREFIX = '/usr/local'
 ---------------
 
-<1> The object _conf.env_ is an instance of the class ConfigSet defined in _waflib/ConfigSet.py_
-<2> The contents of _conf.env_ after the modifications
+<1> The object _ctx.env_ is an instance of the class ConfigSet defined in _waflib/ConfigSet.py_
+<2> The contents of _ctx.env_ after the modifications
 <3> When a key is undefined, it is assumed that it is a list (used by *append_value* above)
-<4> The object _conf.env_ is stored by default in this file
+<4> The object _ctx.env_ is stored by default in this file
 
 Copy and serialization apis are also provided:
 
