@@ -253,7 +253,7 @@ after the build is complete
 
 <1> output of the function bound by 'ctx.add_pre_fun'
 <2> output of the function bound by 'ctx.add_post_fun'
-<3> execution at installation time
+<3> execution at installation time, note that the callbacks are also executed by the install command
 
 
 ==== Installing files
