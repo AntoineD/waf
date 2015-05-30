@@ -297,7 +297,7 @@ Waf: Leaving directory `/tmp/configuration_dang/build'
 
 ==== Multiple configurations
 
-The 'conf.env' object is an important point of the configuration which is accessed and modified by Waf tools and by user-provided configuration functions. The Waf tools do not enforce a particular structure for the build scripts, so the tools will only modify the contents of the default object. The user scripts may provide several 'env' objects in the configuration and pre-set or post-set specific values:
+The 'ctx.env' object is an important point of the configuration which is accessed and modified by Waf tools and by user-provided configuration functions. The Waf tools do not enforce a particular structure for the build scripts, so the tools will only modify the contents of the default object. The user scripts may provide several 'env' objects in the configuration and pre-set or post-set specific values:
 
 [source,python]
 ---------------
@@ -314,17 +314,17 @@ def configure(ctx):
 	print ctx.all_envs['debug'] <5>
 ---------------
 
-<1> Save a reference to 'conf.env'
-<2> Copy and replace 'conf.env'
-<3> Modify 'conf.env'
-<4> Copy and replace 'conf.env' again, from the initial data
+<1> Save a reference to 'ctx.env'
+<2> Copy and replace 'ctx.env'
+<3> Modify 'ctx.env'
+<4> Copy and replace 'ctx.env' again, from the initial data
 <5> Recall a configuration set by its name
 
 === Exception handling
 
 ==== Launching and catching configuration exceptions
 
-Configuration helpers are methods provided by the conf object to help find parameters, for example the method 'conf.find_program'
+Configuration helpers are methods provided by the 'ctx' object to help find parameters, for example the method 'ctx.find_program'
 
 [source,python]
 ---------------
@@ -344,7 +344,7 @@ Checking for program some_app         : not found
  error: The program some_app could not be found
 ---------------
 
-These exceptions may be raised manually by using 'conf.fatal':
+These exceptions may be raised manually by using 'ctx.fatal':
 
 [source,python]
 ---------------
@@ -423,7 +423,7 @@ As a general rule, clients should never rely on exit codes or returned values an
 
 ==== Transactions
 
-Waf tools called during the configuration may use and modify the contents of 'conf.env' at will. Those changes may be complex to track and to undo. Fortunately, the configuration exceptions make it possible to simplify the logic and to go back to a previous state easily. The following example illustrates how to use a transaction to to use several tools at once:
+Waf tools called during the configuration may use and modify the contents of 'ctx.env' at will. Those changes may be complex to track and to undo. Fortunately, the configuration exceptions make it possible to simplify the logic and to go back to a previous state easily. The following example illustrates how to use a transaction to to use several tools at once:
 
 [source,python]
 ---------------
@@ -469,7 +469,7 @@ def configure(ctx):
     ctx.load('some_tool') # ... def configure(ctx): print ctx.logfile ...
 ---------------
 
-In practice, values are frequently needed in the build section too. Adding the data to 'conf.env' is therefore a logical way of separating the concerns between the code (configuration methods) and the persistent data.
+In practice, values are frequently needed in the build section too. Adding the data to 'ctx.env' is therefore a logical way of separating the concerns between the code (configuration methods) and the persistent data.
 
 A typical application of this is 
 ////

@@ -193,8 +193,8 @@ Although any operation can be executed as part of a task, a few scenarios are ty
 
 User functions may be bound to be executed at two key moments during the build command (callbacks):
 
-. immediately before the build starts (bld.add_pre_fun)
-. immediately after the build is completed successfully (bld.add_post_fun)
+. immediately before the build starts (ctx.add_pre_fun)
+. immediately after the build is completed successfully (ctx.add_post_fun)
 
 Here is how to execute a test after the build is finished:
 
@@ -251,8 +251,8 @@ after the build is complete
 'install' finished successfully (15.730s)
 ---------------
 
-<1> output of the function bound by 'bld.add_pre_fun'
-<2> output of the function bound by 'bld.add_post_fun'
+<1> output of the function bound by 'ctx.add_pre_fun'
+<2> output of the function bound by 'ctx.add_post_fun'
 <3> execution at installation time
 
 
