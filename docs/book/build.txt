@@ -266,20 +266,20 @@ Three build context methods are provided for installing files created during or 
 
 [source,python]
 ---------------
-def build(bld):
-	bld.install_files('${PREFIX}/include', ['a1.h', 'a2.h']) <1>
-	bld.install_as('${PREFIX}/dir/bar.png', 'foo.png') <2>
-	bld.symlink_as('${PREFIX}/lib/libfoo.so.1', 'libfoo.so.1.2.3') <3>
+def build(ctx):
+	ctx.install_files('${PREFIX}/include', ['a1.h', 'a2.h']) <1>
+	ctx.install_as('${PREFIX}/dir/bar.png', 'foo.png') <2>
+	ctx.symlink_as('${PREFIX}/lib/libfoo.so.1', 'libfoo.so.1.2.3') <3>
 
-	env_foo = bld.env.derive()
+	env_foo = ctx.env.derive()
 	env_foo.PREFIX = '/opt'
-	bld.install_as('${PREFIX}/dir/test.png', 'foo.png', env=env_foo) <4>
+	ctx.install_as('${PREFIX}/dir/test.png', 'foo.png', env=env_foo) <4>
 
-	start_dir = bld.path.find_dir('src/bar')
-	bld.install_files('${PREFIX}/share', ['foo/a1.h'],
+	start_dir = ctx.path.find_dir('src/bar')
+	ctx.install_files('${PREFIX}/share', ['foo/a1.h'],
 		cwd=start_dir, relative_trick=True) <5>
 
-	bld.install_files('${PREFIX}/share', start_dir.ant_glob('**/*.png'), <6>
+	ctx.install_files('${PREFIX}/share', start_dir.ant_glob('**/*.png'), <6>
 		cwd=start_dir, relative_trick=True)
 ---------------
 

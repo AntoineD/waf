@@ -21,10 +21,10 @@ def configure(ctx):
 	ctx.env.FOO = ctx.options.foo <1>
 	ctx.find_program('touch', var='TOUCH') <2>
 
-def build(bld):
-	print(bld.env.TOUCH)
-	print(bld.env.FOO) <3>
-	bld(rule='${TOUCH} ${TGT}', target='foo.txt') <4>
+def build(ctx):
+	print(ctx.env.TOUCH)
+	print(ctx.env.FOO) <3>
+	ctx(rule='${TOUCH} ${TGT}', target='foo.txt') <4>
 ---------------
 
 <1> Store the option _foo_ into the variable _env_ (dict-like structure)
